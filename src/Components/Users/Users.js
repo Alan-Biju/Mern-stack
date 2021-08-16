@@ -10,6 +10,7 @@ const Users = () => {
 			.get('http://localhost:4000/user')
 			.then(function (response) {
 				// handle success
+
 				setData(response.data);
 			})
 			.catch(function (error) {
@@ -20,6 +21,7 @@ const Users = () => {
 			fetchData();
 		};
 	}, []);
+	console.log(data);
 	return (
 		<UsersContainer>
 			{data && data.length > 0 ? (
