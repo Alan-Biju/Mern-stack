@@ -15,5 +15,5 @@ app.get('/', (req, res) => {
 app.use('/', router);
 
 app.listen(process.env.PORT || 4000, () => {
-	console.log(`app listening at http://localhost:${port}`);
+	console.log(`app listening at http://localhost`);
 });
