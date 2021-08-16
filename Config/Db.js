@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Db = async () => {
 	await mongoose
-		.connect(process.env.DB_HOST, {
+		.connect("mongodb+srv://Alan:asdfghjkl238@cluster0.asu1c.mongodb.net/webQuark?retryWrites=true&w=majority", {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useCreateIndex: true,
