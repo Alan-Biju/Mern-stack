@@ -8,13 +8,12 @@ Db();
 const app = express();
 app.use(cors());
 app.use(express.json());
-const port = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
 	res.send('Api running');
 });
 app.use('/', router);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 4000, () => {
 	console.log(`app listening at http://localhost:${port}`);
 });
