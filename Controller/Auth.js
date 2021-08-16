@@ -30,7 +30,7 @@ export const register = async (req, res) => {
 export const User = async (req, res) => {
 	try {
 		const post = await user.find();
-		res.json(post);
+		res.status(201).send(post);
 	} catch (error) {
 		res.json({ message: error.message });
 	}
