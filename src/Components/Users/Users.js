@@ -7,7 +7,7 @@ const Users = () => {
 	const [data, setData] = useState();
 	useState(() => {
 		const fetchData = axios
-			.get('http://localhost:4000/user')
+			.get('https://user-api-info.herokuapp.com/user')
 			.then(function (response) {
 				// handle success
 
@@ -21,7 +21,6 @@ const Users = () => {
 			fetchData();
 		};
 	}, []);
-	console.log(data);
 	return (
 		<UsersContainer>
 			{data && data.length > 0 ? (

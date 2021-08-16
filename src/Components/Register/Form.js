@@ -13,7 +13,7 @@ const Form = () => {
 		e.preventDefault();
 		console.log(firstname, lastname, gender, age, country);
 		axios
-			.post('http://localhost:4000/register', {
+			.post('https://user-api-info.herokuapp.com/register', {
 				firstname,
 				lastname,
 				gender,

@@ -8,7 +8,7 @@ const Info = () => {
 	const { id } = useParams();
 	useState(() => {
 		const fetchData = axios
-			.get(`http://localhost:4000/info/${id}`)
+			.get(`https://user-api-info.herokuapp.com/info/${id}`)
 			.then(function (response) {
 				// handle success
 				setData(response.data);
