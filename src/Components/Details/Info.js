@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Loading from '../Reuseable/Loading';
 
 const Info = () => {
 	const [data, setData] = useState();
+	const [isLoading, setIsLoading] = useState(true);
+
 	const { id } = useParams();
 	useState(() => {
 		const fetchData = axios
@@ -12,6 +15,7 @@ const Info = () => {
 			.then(function (response) {
 				// handle success
 				setData(response.data);
+				setIsLoading(false);
 			})
 			.catch(function (error) {
 				// handle error
@@ -23,43 +27,49 @@ const Info = () => {
 	}, []);
 	const words = ['male', 'Male', 'm', 'boy'];
 	return (
-		<InfoConatiner>
-			{data && (
-				<InfoBox>
-					<img
-						src={
-							words.includes(data[0].gender)
-								? `/Assets/male.svg`
-								: `/Assets/female.svg`
-						}
-						alt='avatar'
-					/>
-					<Name>
-						<p>
-							FirstName : <span>{data[0].firstname}</span>
-						</p>
-						<p>
-							LastName : <span>{data[0].lastname}</span>
-						</p>
-					</Name>
-					<Details>
-						<p>
-							Gender : <span>{data[0].gender}</span>
-						</p>
-					</Details>
-					<Details>
-						<p>
-							Age : <span>{data[0].age}</span>
-						</p>
-					</Details>
-					<Details>
-						<p>
-							Nationality : <span>{data[0].nationality}</span>
-						</p>
-					</Details>
-				</InfoBox>
+		<>
+			{isLoading ? (
+				<Loading />
+			) : (
+				<InfoConatiner>
+					{data && (
+						<InfoBox>
+							<img
+								src={
+									words.includes(data[0].gender)
+										? `/Assets/male.svg`
+										: `/Assets/female.svg`
+								}
+								alt='avatar'
+							/>
+							<Name>
+								<p>
+									FirstName : <span>{data[0].firstname}</span>
+								</p>
+								<p>
+									LastName : <span>{data[0].lastname}</span>
+								</p>
+							</Name>
+							<Details>
+								<p>
+									Gender : <span>{data[0].gender}</span>
+								</p>
+							</Details>
+							<Details>
+								<p>
+									Age : <span>{data[0].age}</span>
+								</p>
+							</Details>
+							<Details>
+								<p>
+									Nationality : <span>{data[0].nationality}</span>
+								</p>
+							</Details>
+						</InfoBox>
+					)}
+				</InfoConatiner>
 			)}
-		</InfoConatiner>
+		</>
 	);
 };
 
@@ -71,7 +81,7 @@ const InfoConatiner = styled.div`
 	place-items: center;
 	background-color: #f6f6f6;
 	background-image: url('/Assets/background.png');
-    padding: 10px;
+	padding: 10px;
 `;
 const InfoBox = styled.div`
 	width: 100%;

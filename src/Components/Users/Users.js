@@ -1,17 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Loading from '../Reuseable/Loading';
 import Card from './Cards/Card';
 
 const Users = () => {
 	const [data, setData] = useState();
+	const [isLoading, setIsLoading] = useState(true);
 	useState(() => {
 		const fetchData = axios
 			.get('https://user-api-info.herokuapp.com/user')
 			.then(function (response) {
 				// handle success
-
 				setData(response.data);
+				setIsLoading(false);
 			})
 			.catch(function (error) {
 				// handle error
@@ -22,17 +24,23 @@ const Users = () => {
 		};
 	}, []);
 	return (
-		<UsersContainer>
-			{data && data.length > 0 ? (
-				data.map((item) => {
-					return <Card key={item._id} Data={item} />;
-				})
+		<>
+			{isLoading ? (
+				<Loading />
 			) : (
-				<Image>
-					<img src='Assets/empty.svg' alt='no Data' />
-				</Image>
+				<UsersContainer>
+					{data && data.length > 0 ? (
+						data.map((item) => {
+							return <Card key={item._id} Data={item} />;
+						})
+					) : (
+						<Image>
+							<img src='Assets/empty.svg' alt='no Data' />
+						</Image>
+					)}
+				</UsersContainer>
 			)}
-		</UsersContainer>
+		</>
 	);
 };
 
